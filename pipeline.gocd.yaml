@@ -1,0 +1,22 @@
+pipelines:
+  "gocd-elastic-agents-plugin":
+    group: gocd
+    label_template: "${git[:8]}"
+    materials:
+      git:
+        type: configrepo
+    stages:
+      - build:
+          clean_workspace: true
+          jobs:
+            build:
+              elastic_profile_id: w.c1.m1024.e5
+              artifacts:
+                - build:
+                    source: target/libs
+                    destination: target
+              tasks:
+                - exec:
+                    command: ide
+                    arguments:
+                      - ./gradlew test jar
