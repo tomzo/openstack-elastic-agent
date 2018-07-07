@@ -40,6 +40,7 @@ public class OpenStackPlugin implements GoPlugin {
     private AgentInstances agentInstances;
     private PluginRequest pluginRequest;
     private PendingAgentsService pendingAgents;
+    private VaultService vaultService;
 
 
     @Override
@@ -47,6 +48,7 @@ public class OpenStackPlugin implements GoPlugin {
         pluginRequest = new PluginRequest(accessor);
         agentInstances = new OpenStackInstances();
         pendingAgents = new PendingAgentsService(agentInstances);
+        vaultService = new VaultService();
     }
 
     @Override
@@ -60,7 +62,7 @@ public class OpenStackPlugin implements GoPlugin {
                     return ShouldAssignWorkRequest.fromJSON(request.requestBody()).executor(agentInstances, pluginRequest).execute();
                 case REQUEST_CREATE_AGENT:
                     refreshInstances();
-                    return CreateAgentRequest.fromJSON(request.requestBody()).executor(pendingAgents, agentInstances, pluginRequest).execute();
+                    return CreateAgentRequest.fromJSON(request.requestBody()).executor(pendingAgents, vaultService, agentInstances, pluginRequest).execute();
                 case REQUEST_SERVER_PING:
                     refreshInstances();
                     return new ServerPingRequestExecutor(agentInstances, pluginRequest).execute();

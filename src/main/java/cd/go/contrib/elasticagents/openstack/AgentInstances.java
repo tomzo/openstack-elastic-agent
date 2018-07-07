@@ -33,12 +33,12 @@ public interface AgentInstances<T> {
      * <p>
      * So that instances created are auto-registered with the server, the agent instance should have an
      * <code>autoregister.properties</code>.
-     *
      * @param request       the request object
      * @param settings        the plugin settings object
+     * @param vault_token
      * @param transactionId
      */
-    T create(CreateAgentRequest request, PluginSettings settings, String transactionId) throws Exception;
+    OpenStackInstance create(CreateAgentRequest request, PluginSettings settings, String vault_token, String transactionId) throws Exception;
 
     /**
      * This message is sent to assist the plugin to refresh any metadata about the agent.

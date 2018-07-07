@@ -39,8 +39,8 @@ public class OpenStackInstances implements AgentInstances<OpenStackInstance> {
     private boolean refreshed;
 
     @Override
-    public OpenStackInstance create(CreateAgentRequest request, PluginSettings settings, String transactionId) throws Exception {
-        OpenStackInstance op_instance = OpenStackInstance.create(request, settings, os_client(settings), transactionId);
+    public OpenStackInstance create(CreateAgentRequest request, PluginSettings settings, String vault_token, String transactionId) throws Exception {
+        OpenStackInstance op_instance = OpenStackInstance.create(request, settings, os_client(settings), vault_token, transactionId);
         register(op_instance);
         return op_instance;
     }

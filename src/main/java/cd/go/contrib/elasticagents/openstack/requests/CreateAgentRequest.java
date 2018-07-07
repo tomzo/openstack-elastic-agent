@@ -16,10 +16,7 @@
 
 package cd.go.contrib.elasticagents.openstack.requests;
 
-import cd.go.contrib.elasticagents.openstack.AgentInstances;
-import cd.go.contrib.elasticagents.openstack.PendingAgentsService;
-import cd.go.contrib.elasticagents.openstack.PluginRequest;
-import cd.go.contrib.elasticagents.openstack.RequestExecutor;
+import cd.go.contrib.elasticagents.openstack.*;
 import cd.go.contrib.elasticagents.openstack.executors.CreateAgentRequestExecutor;
 import cd.go.contrib.elasticagents.openstack.utils.OpenstackClientWrapper;
 import com.google.gson.FieldNamingPolicy;
@@ -65,8 +62,8 @@ public class CreateAgentRequest {
         return environment;
     }
 
-    public RequestExecutor executor(PendingAgentsService pendingAgents, AgentInstances agentInstances, PluginRequest pluginRequest) throws Exception {
-        return new CreateAgentRequestExecutor(this, agentInstances, pluginRequest, new OpenstackClientWrapper(pluginRequest.getPluginSettings()), pendingAgents);
+    public RequestExecutor executor(PendingAgentsService pendingAgents, VaultService vaultService, AgentInstances agentInstances, PluginRequest pluginRequest) throws Exception {
+        return new CreateAgentRequestExecutor(this, agentInstances, pluginRequest, new OpenstackClientWrapper(pluginRequest.getPluginSettings()), pendingAgents, vaultService);
     }
 
     @Override
