@@ -20,3 +20,20 @@ pipelines:
                     command: ide
                     arguments:
                       - ./gradlew test jar
+      - deploy:
+          clean_workspace: true
+          jobs:
+            build:
+              elastic_profile_id: w.c1.m1024.e5
+              tasks:
+                - fetch:
+                    stage: build
+                    job: build
+                    source: target/libs
+                    destination: target
+                - exec:
+                    command: ide
+                    arguments:
+                      - --idefile
+                      - Idefile.k8s
+                      - ./deploy.sh
