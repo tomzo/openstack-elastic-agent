@@ -108,7 +108,7 @@ public class PluginSettings {
 
     @Expose
     @SerializedName("delete_error_instances")
-    private boolean deleteErrorInstances;
+    private Boolean deleteErrorInstances;
 
     @SerializedName("vault_addr")
     private String vaultAddr;
@@ -376,7 +376,9 @@ public class PluginSettings {
         this.sslVerificationDisabled = sslVerificationDisabled;
     }
 
-    public boolean getOpenstackDeleteErrorInstances() {
+    public Boolean getOpenstackDeleteErrorInstances() {
+        if(deleteErrorInstances == null)
+            return false;
         return deleteErrorInstances;
     }
 
