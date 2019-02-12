@@ -64,7 +64,7 @@ public interface Constants {
     String OPENSTACK_DOMAIN = "openstack_domain";
 
 
-    String VAULT_ADDR = "vault_addr";
+    String VAULT_ADDR = "vault_address";
     String VAULT_SSL_CERT = "vault_ssl_cert";
     String VAULT_SERVER_TOKEN = "vault_server_token";
     String VAULT_POLICY = "vault_policy";

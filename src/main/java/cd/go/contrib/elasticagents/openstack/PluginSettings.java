@@ -110,7 +110,8 @@ public class PluginSettings {
     @SerializedName("delete_error_instances")
     private Boolean deleteErrorInstances;
 
-    @SerializedName("vault_addr")
+    @Expose
+    @SerializedName("vault_address")
     private String vaultAddr;
 
     @Expose

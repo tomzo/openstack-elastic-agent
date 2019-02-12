@@ -53,7 +53,7 @@ public class GetPluginConfigurationExecutor implements RequestExecutor {
     public static final Field SSL_VERIFICATION_DISABLED = new NonBlankField("ssl_verification_disabled", "Disable SSL verification", "false", true, false, "18");
     public static final Field DELETE_ERROR_INSTANCES = new NonBlankField("delete_error_instances", "Delete error instances", "false", false, false, "19");
 
-    public static final Field VAULT_ADDR = new Field("vault_addr", "Vault address", null, false, false, "19");
+    public static final Field VAULT_ADDR = new Field("vault_address", "Vault address", null, false, false, "19");
     public static final Field VAULT_SSL_CERT = new Field("vault_ssl_cert", "Vault SSL certificate path", null, false, false, "20");
     public static final Field VAULT_SERVER_TOKEN = new Field("vault_server_token", "Vault Orphan token", null, false, false, "21");
     public static final Field VAULT_POLICY = new Field("vault_policy", "Vault policy", null, false, false, "22");

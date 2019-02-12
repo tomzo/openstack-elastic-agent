@@ -1,5 +1,8 @@
 package cd.go.contrib.elasticagents.openstack;
 
+import static java.text.MessageFormat.format;
+import static org.apache.commons.lang.StringUtils.isBlank;
+
 public class VaultServiceConfig {
     private String vaultAddress;
     private String serverToken;
@@ -9,6 +12,12 @@ public class VaultServiceConfig {
         this.vaultAddress = vaultAddress;
         this.serverToken = serverToken;
         this.sslCertFile = sslCertFile;
+    }
+
+    @Override
+    public String toString() {
+        String token = isBlank(this.serverToken) ? "not-specified" : "****";
+        return format("VaultConfig: Address: {0}, SslCertFile: {1}, Token: {2}", this.vaultAddress, this.sslCertFile, token);
     }
 
     @Override

@@ -126,6 +126,7 @@ public class CreateAgentRequestExecutor implements RequestExecutor {
           String vaultPolicy = Util.getVaultPolicy(request.properties(), pluginRequest.getPluginSettings());
           String vaultTtl = Util.getVaultTtl(request.properties(), pluginRequest.getPluginSettings());
           VaultServiceConfig vaultConfig = Util.getVaultConfig(pluginRequest.getPluginSettings());
+          LOG.debug(format("[{0}] [create-agent] {1}", request, vaultConfig.toString()));
           String vaultToken = vaultService.createAgentToken(vaultConfig, vaultPolicy, vaultTtl);
             OpenStackInstance pendingInstance = agentInstances.create(request, pluginRequest.getPluginSettings(),vaultToken, transactionId);
             LOG.info(format("[{0}] [create-agent] Will create new agent since no matching agents found", transactionId));
