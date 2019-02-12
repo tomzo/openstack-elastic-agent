@@ -19,7 +19,7 @@
   <input type="text" ng-model="go_server_url" ng-required="true"/>
   <span class="form_error" ng-show="GOINPUTNAME[go_server_url].$error.server">{{ GOINPUTNAME[go_server_url].$error.server}}</span>
 </div>
-  
+
 <div class="form_item_block">
   <label>Agent Time To Live minimum (E.g. 30 minutes)<span class='asterix'>*</span></label>
   <input type="text" ng-model="auto_register_timeout" ng-required="true" placeholder="30"/>
@@ -135,5 +135,36 @@
   <input type="radio" ng-model="ssl_verification_disabled" value="true"/> True
   <input type="radio" ng-model="ssl_verification_disabled" value="false" checked="checked"/> False
   <span class="form_error" ng-show="GOINPUTNAME[ssl_verification_disabled].$error.server">{{ GOINPUTNAME[ssl_verification_disabled].$error.server}}</span>
-</div>  
+</div>
 
+<hr>
+
+<div class="form_item_block">
+  <label>Vault Address</label>
+  <input type="text" ng-model="vault_addr" ng-required="false"/>
+  <span class="form_error" ng-show="GOINPUTNAME[vault_addr].$error.server">{{ GOINPUTNAME[vault_addr].$error.server}}</span>
+</div>
+
+<div class="form_item_block">
+  <label>Vault SSL certificate file path</label>
+  <input type="text" ng-model="vault_ssl_cert" ng-required="false"/>
+  <span class="form_error" ng-show="GOINPUTNAME[vault_ssl_cert].$error.server">{{ GOINPUTNAME[vault_ssl_cert].$error.server}}</span>
+</div>
+
+<div class="form_item_block">
+  <label>Vault orphan token for GoCD Server</label>
+  <input type="text" ng-model="vault_server_token" ng-required="false"/>
+  <span class="form_error" ng-show="GOINPUTNAME[vault_server_token].$error.server">{{ GOINPUTNAME[vault_server_token].$error.server}}</span>
+</div>
+
+<div class="form_item_block">
+  <label>Vault Policy</label>
+  <input type="text" ng-model="vault_policy" ng-required="false"/>
+  <span class="form_error" ng-show="GOINPUTNAME[vault_policy].$error.server">{{ GOINPUTNAME[vault_policy].$error.server}}</span>
+</div>
+
+<div class="form_item_block">
+  <label>Vault Agent's token TTL</label>
+  <input type="text" ng-model="vault_ttl" ng-required="false"/>
+  <span class="form_error" ng-show="GOINPUTNAME[vault_ttl].$error.server">{{ GOINPUTNAME[vault_ttl].$error.server}}</span>
+</div>

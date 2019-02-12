@@ -52,6 +52,12 @@ public class GetPluginConfigurationExecutor implements RequestExecutor {
     public static final Field OPENSTACK_USERDATA = new Field("openstack_userdata", "OpenStack Userdata", null, false, false, "17");
     public static final Field SSL_VERIFICATION_DISABLED = new NonBlankField("ssl_verification_disabled", "Disable SSL verification", "false", true, false, "18");
 
+    public static final Field VAULT_ADDR = new Field("vault_addr", "Vault address", null, false, false, "19");
+    public static final Field VAULT_SSL_CERT = new Field("vault_ssl_cert", "Vault SSL certificate path", null, false, false, "20");
+    public static final Field VAULT_SERVER_TOKEN = new Field("vault_server_token", "Vault Orphan token", null, false, false, "21");
+    public static final Field VAULT_POLICY = new Field("vault_policy", "Vault policy", null, false, false, "22");
+    public static final Field VAULT_TTL = new Field("vault_ttl", "Vault TTL", null, false, false, "23");
+
     //public static final Field AGENT_RESOURCES = new Field("resources", "Agent Resources", null, false, false, "11");
     //public static final Field AGENT_ENVIRONMENTS = new Field("environments", "Environments", null, false, false, "12");
 
@@ -77,7 +83,11 @@ public class GetPluginConfigurationExecutor implements RequestExecutor {
         FIELDS.put(OPENSTACK_NETWORK.key(), OPENSTACK_NETWORK);
         FIELDS.put(OPENSTACK_USERDATA.key(), OPENSTACK_USERDATA);
         FIELDS.put(SSL_VERIFICATION_DISABLED.key(), SSL_VERIFICATION_DISABLED);
-
+        FIELDS.put(VAULT_ADDR.key(), VAULT_ADDR);
+        FIELDS.put(VAULT_SSL_CERT.key(), VAULT_SSL_CERT);
+        FIELDS.put(VAULT_SERVER_TOKEN.key(), VAULT_SERVER_TOKEN);
+        FIELDS.put(VAULT_POLICY.key(), VAULT_POLICY);
+        FIELDS.put(VAULT_TTL.key(), VAULT_TTL);
         // agent spec
         //FIELDS.put(AGENT_RESOURCES.key(), AGENT_RESOURCES);
         //FIELDS.put(AGENT_ENVIRONMENTS.key(), AGENT_ENVIRONMENTS);

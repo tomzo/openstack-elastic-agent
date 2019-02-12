@@ -37,6 +37,9 @@ public class GetProfileMetadataExecutor implements RequestExecutor {
     public static final Metadata OPENSTACK_MIN_INSTANCE_LIMIT = new Metadata(Constants.OPENSTACK_MIN_INSTANCE_LIMIT, false, false);
     public static final Metadata OPENSTACK_MAX_INSTANCE_LIMIT = new Metadata(Constants.OPENSTACK_MAX_INSTANCE_LIMIT, false, false);
     public static final Metadata OPENSTACK_USERDATA = new Metadata(Constants.OPENSTACK_USERDATA_ARGS, false, false);
+    // Vault ---
+    public static final Metadata VAULT_POLICY = new Metadata(Constants.VAULT_POLICY, false, false);
+    public static final Metadata VAULT_TTL = new Metadata(Constants.VAULT_TTL, false, false);
 
     public static final List<Metadata> FIELDS = new ArrayList<>();
 
@@ -49,6 +52,8 @@ public class GetProfileMetadataExecutor implements RequestExecutor {
         FIELDS.add(OPENSTACK_MIN_INSTANCE_LIMIT);
         FIELDS.add(OPENSTACK_MAX_INSTANCE_LIMIT);
         FIELDS.add(OPENSTACK_USERDATA);
+        FIELDS.add(VAULT_POLICY);
+        FIELDS.add(VAULT_TTL);
     }
 
     @Override

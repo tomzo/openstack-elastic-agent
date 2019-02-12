@@ -110,6 +110,25 @@ public class PluginSettings {
     @SerializedName("delete_error_instances")
     private boolean deleteErrorInstances;
 
+    @SerializedName("vault_addr")
+    private String vaultAddr;
+
+    @Expose
+    @SerializedName("vault_ssl_cert")
+    private String vaultSslCert;
+
+    @Expose
+    @SerializedName("vault_server_token")
+    private String vaultServerToken;
+
+    @Expose
+    @SerializedName("vault_policy")
+    private String vaultPolicy;
+
+    @Expose
+    @SerializedName("vault_ttl")
+    private String vaultTtl;
+
     private Period autoRegisterPeriod;
 
     public static PluginSettings fromJSON(String json) {
@@ -156,6 +175,16 @@ public class PluginSettings {
             return false;
         if (deleteErrorInstances != that.deleteErrorInstances)
             return false;
+        if (vaultAddr != null ? !vaultAddr.equals(that.vaultAddr) : that.vaultAddr != null)
+            return false;
+        if (vaultSslCert != null ? !vaultSslCert.equals(that.vaultSslCert) : that.vaultSslCert != null)
+            return false;
+        if (vaultServerToken != null ? !vaultServerToken.equals(that.vaultServerToken) : that.vaultServerToken != null)
+            return false;
+        if (vaultPolicy != null ? !vaultPolicy.equals(that.vaultPolicy) : that.vaultPolicy != null)
+            return false;
+        if (vaultTtl != null ? !vaultTtl.equals(that.vaultTtl) : that.vaultTtl != null)
+            return false;
         return openstackUserdata != null ? openstackUserdata.equals(that.openstackUserdata) : that.openstackUserdata == null;
 
     }
@@ -179,6 +208,11 @@ public class PluginSettings {
         result = 31 * result + (openstackFlavor != null ? openstackFlavor.hashCode() : 0);
         result = 31 * result + (openstackNetwork != null ? openstackNetwork.hashCode() : 0);
         result = 31 * result + (openstackUserdata != null ? openstackUserdata.hashCode() : 0);
+        result = 31 * result + (vaultAddr != null ? vaultAddr.hashCode() : 0);
+        result = 31 * result + (vaultSslCert != null ? vaultSslCert.hashCode() : 0);
+        result = 31 * result + (vaultServerToken != null ? vaultServerToken.hashCode() : 0);
+        result = 31 * result + (vaultPolicy != null ? vaultPolicy.hashCode() : 0);
+        result = 31 * result + (vaultTtl != null ? vaultTtl.hashCode() : 0);
         return result;
     }
 
@@ -348,5 +382,45 @@ public class PluginSettings {
 
     public void setDeleteErrorInstances(boolean deleteErrorInstances) {
         this.deleteErrorInstances = deleteErrorInstances;
+    }
+
+    public String getVaultAddr() {
+        return vaultAddr;
+    }
+
+    public void setVaultAddr(String vaultAddr) {
+        this.vaultAddr = vaultAddr;
+    }
+
+    public String getVaultServerToken() {
+        return vaultServerToken;
+    }
+
+    public void setVaultServerToken(String vaultServerToken) {
+        this.vaultServerToken = vaultServerToken;
+    }
+
+    public String getVaultPolicy() {
+        return vaultPolicy;
+    }
+
+    public void setVaultPolicy(String vaultPolicy) {
+        this.vaultPolicy = vaultPolicy;
+    }
+
+    public String getVaultTtl() {
+        return vaultTtl;
+    }
+
+    public void setVaultTtl(String vaultTtl) {
+        this.vaultTtl = vaultTtl;
+    }
+
+    public void setVaultSslCert(String vaultSslCert) {
+        this.vaultSslCert = vaultSslCert;
+    }
+
+    public String getVaultSslCert() {
+        return this.vaultSslCert;
     }
 }

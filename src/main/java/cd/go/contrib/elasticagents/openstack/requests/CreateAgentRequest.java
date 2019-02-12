@@ -65,8 +65,8 @@ public class CreateAgentRequest {
         return environment;
     }
 
-    public RequestExecutor executor(PendingAgentsService pendingAgents, AgentInstances<OpenStackInstance> agentInstances, PluginRequest pluginRequest) throws Exception {
-        return new CreateAgentRequestExecutor(this, agentInstances, pluginRequest, new OpenstackClientWrapper(pluginRequest.getPluginSettings()), pendingAgents);
+    public RequestExecutor executor(PendingAgentsService pendingAgents, VaultService vaultService, AgentInstances<OpenStackInstance> agentInstances, PluginRequest pluginRequest) throws Exception {
+        return new CreateAgentRequestExecutor(this, agentInstances, pluginRequest, new OpenstackClientWrapper(pluginRequest.getPluginSettings()), pendingAgents, vaultService);
     }
 
     @Override

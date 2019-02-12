@@ -16,17 +16,22 @@
 
 package cd.go.contrib.elasticagents.openstack.utils;
 
+import cd.go.contrib.elasticagents.openstack.Constants;
+import cd.go.contrib.elasticagents.openstack.PluginSettings;
+import cd.go.contrib.elasticagents.openstack.VaultServiceConfig;
 import cd.go.contrib.elasticagents.openstack.executors.GetViewRequestExecutor;
 import com.google.common.base.Charsets;
 import com.google.common.io.ByteStreams;
 import com.google.common.io.CharStreams;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.apache.commons.lang.StringUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringReader;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
 
@@ -76,5 +81,18 @@ public class Util {
         int random = agentMaxTTL - agentMinTTL;
         result = agentMinTTL + rand.nextInt(random + 1);
         return result;
+    }
+
+    public static String getVaultPolicy(Map<String, String> profileProperties, PluginSettings settings) {
+        return StringUtils.isNotBlank(profileProperties.get(Constants.VAULT_POLICY)) ? profileProperties.get(Constants.VAULT_POLICY) : settings.getVaultPolicy();
+    }
+
+    public static String getVaultTtl(Map<String, String> profileProperties, PluginSettings settings) {
+        String vaultTtl = StringUtils.isNotBlank(profileProperties.get(Constants.VAULT_TTL)) ? profileProperties.get(Constants.VAULT_TTL) : settings.getVaultTtl();
+        return vaultTtl;
+    }
+
+    public static VaultServiceConfig getVaultConfig(PluginSettings pluginSettings) {
+        return new VaultServiceConfig(pluginSettings.getVaultAddr(), pluginSettings.getVaultServerToken(), pluginSettings.getVaultSslCert());
     }
 }

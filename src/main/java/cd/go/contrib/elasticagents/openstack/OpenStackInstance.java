@@ -107,11 +107,13 @@ public class OpenStackInstance {
         os_client.compute().servers().delete(id);
     }
 
-    public static OpenStackInstance create(CreateAgentRequest request, PluginSettings settings, OSClient osclient, String transactionId) throws OS4JException, ImageNotFoundException {
+    public static OpenStackInstance create(CreateAgentRequest request, PluginSettings settings, OSClient osclient,String vault_token, String transactionId) throws OS4JException, ImageNotFoundException {
 
         String instance_name;
 
         HashMap<String, String> mdata = new HashMap<>();
+
+        mdata.put(Constants.VAULT_TOKEN, vault_token);
 
         Iterator entries = request.properties().entrySet().iterator();
         while (entries.hasNext()) {

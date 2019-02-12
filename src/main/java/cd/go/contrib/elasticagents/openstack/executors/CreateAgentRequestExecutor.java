@@ -20,6 +20,7 @@ import cd.go.contrib.elasticagents.openstack.*;
 import cd.go.contrib.elasticagents.openstack.requests.CreateAgentRequest;
 import cd.go.contrib.elasticagents.openstack.utils.ImageNotFoundException;
 import cd.go.contrib.elasticagents.openstack.utils.OpenstackClientWrapper;
+import cd.go.contrib.elasticagents.openstack.utils.Util;
 import com.thoughtworks.go.plugin.api.logging.Logger;
 import com.thoughtworks.go.plugin.api.response.DefaultGoPluginApiResponse;
 import com.thoughtworks.go.plugin.api.response.GoPluginApiResponse;
@@ -39,14 +40,16 @@ public class CreateAgentRequestExecutor implements RequestExecutor {
     private final PluginRequest pluginRequest;
     private final OpenstackClientWrapper clientWrapper;
     private PendingAgentsService pendingAgentsService;
+    private VaultService vaultService;
 
     public CreateAgentRequestExecutor(CreateAgentRequest request, AgentInstances<OpenStackInstance> agentInstances, PluginRequest pluginRequest,
-                                      OpenstackClientWrapper clientWrapper, PendingAgentsService pendingAgentsService) throws Exception {
+                                      OpenstackClientWrapper clientWrapper, PendingAgentsService pendingAgentsService, VaultService vaultService) throws Exception {
         this.request = request;
         this.agentInstances = agentInstances;
         this.pluginRequest = pluginRequest;
         this.clientWrapper = clientWrapper;
         this.pendingAgentsService = pendingAgentsService;
+        this.vaultService = vaultService;
     }
 
     @Override
@@ -120,7 +123,11 @@ public class CreateAgentRequestExecutor implements RequestExecutor {
         }
 
         try {
-            OpenStackInstance pendingInstance = agentInstances.create(request, pluginRequest.getPluginSettings(), transactionId);
+          String vaultPolicy = Util.getVaultPolicy(request.properties(), pluginRequest.getPluginSettings());
+          String vaultTtl = Util.getVaultTtl(request.properties(), pluginRequest.getPluginSettings());
+          VaultServiceConfig vaultConfig = Util.getVaultConfig(pluginRequest.getPluginSettings());
+          String vaultToken = vaultService.createAgentToken(vaultConfig, vaultPolicy, vaultTtl);
+            OpenStackInstance pendingInstance = agentInstances.create(request, pluginRequest.getPluginSettings(),vaultToken, transactionId);
             LOG.info(format("[{0}] [create-agent] Will create new agent since no matching agents found", transactionId));
             this.pendingAgentsService.addPending(pendingInstance, request);
         } catch (ImageNotFoundException ex) {
